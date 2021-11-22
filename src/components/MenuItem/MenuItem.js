@@ -9,7 +9,7 @@ const MenuItem = ({ title, imageUrl, linkUrl }) => {
     navigate(`${linkUrl}`);
   };
   return (
-    <Card className='custom-card'>
+    <Card className='custom-card mb-3'>
       <div className='img-wrapper' onClick={gotToUrl}>
         <Card.Img variant='top' src={imageUrl} />
       </div>
