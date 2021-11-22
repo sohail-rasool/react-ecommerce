@@ -1,19 +1,15 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import Header from './layout/header/Header';
-
 import React from 'react';
+import AppLayout from './layout/AppLayout';
+
+// Pages
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <>
-      <Header />
-      <Container>
-        <Row>
-          <Col>
-            <h1>overreacted</h1>
-          </Col>
-        </Row>
-      </Container>
+      <AppLayout>
+        <HomePage />
+      </AppLayout>
     </>
   );
 }

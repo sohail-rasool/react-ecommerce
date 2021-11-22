@@ -1,15 +1,26 @@
 @import url(./_variables.css);  
 @import url(./fonts.css);
-  
 
-  body {
-    background: var(--clr-bg);
-    color: var(--clr-font);
-    line-height: 1.5;
-    font-size: 0.875rem;
-    transition: all 0.3s linear;
-    font-family: 'Roboto';
-  }
+
+
+html,body{
+  height: 100%;
+}
+#root{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}  
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-font);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  transition: all 0.3s linear;
+  font-family: 'Roboto';
+}
 
 
 

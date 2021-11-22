@@ -6,7 +6,6 @@
 /* Color vaiables for dark theme */
 .dark-theme {
   --navbar-bg:linear-gradient(#141A25,#141A25 60%,#141A25);
-
   --clr-bg: #282c35;
   --clr-font: #fff;
 }
@@ -15,7 +14,6 @@
 
 .light-theme {
   --navbar-bg:linear-gradient(#f9fafb,#f8f9fa 60%,#e9eaeb);
-
   --clr-bg: #fff;
   --clr-font: #282c35;
 }

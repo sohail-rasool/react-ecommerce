@@ -1,0 +1,20 @@
+.custom-card {
+  background-image: var(--navbar-bg) !important;
+  cursor: pointer;
+}
+.custom-card .card-title {
+  color: var(--clr-fon);
+  text-transform: uppercase;
+}
+.custom-card .img-wrapper {
+  height: 300px;
+  overflow: hidden;
+}
+.custom-card .card-img-top {
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.2s ease-in;
+}
+.custom-card:hover .card-img-top {
+  transform: scale(1.2);
+}
