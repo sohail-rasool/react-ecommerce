@@ -1,0 +1,44 @@
+.checkbox {
+  opacity: 0;
+  right: 0;
+  position: absolute;
+}
+
+.label {
+  width: 45px;
+  height: 18px;
+  background-color:var(--clr-font);
+  display: flex;
+  border-radius:50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 15px;
+  height: 15px;
+  background-color: var(--clr-bg);
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball{
+  transform: translateX(24px);
+}
+
+.fa-moon {
+  color: var(--clr-bg);
+  font-size: 0.875em;
+}
+
+.fa-sun {
+  color: #FC9601;
+  font-size: 0.875em;
+}

@@ -1,0 +1,9 @@
+.custom-navbar {
+  background-image: var(--navbar-bg) !important;
+}
+.custom-navbar .nav-link,.navbar-brand {
+  color: var(--clr-font) !important;
+}
+.navbar-toggler {
+  color: var(--clr-font) !important;
+}
