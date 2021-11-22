@@ -5,11 +5,11 @@ import MenuItem from '../components/MenuItem/MenuItem';
 
 import menuItemsData from '../data/menu-items';
 
-const HomePage = () => {
+const HomePage = (props) => {
   return (
-    <Row md={3} className='g-4'>
+    <Row>
       {menuItemsData.map((item) => (
-        <Col key={item.id}>
+        <Col lg={4} key={item.id}>
           <MenuItem
             title={item.title}
             imageUrl={item.imageUrl}
