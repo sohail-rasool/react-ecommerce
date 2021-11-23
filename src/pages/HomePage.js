@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import MenuItem from '../components/MenuItem/MenuItem';
 
-import menuItemsData from '../data/menu-items';
+import menuItemsData from '../data/menu-items-data';
 
 const HomePage = (props) => {
   return (

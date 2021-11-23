@@ -1,0 +1,7 @@
+.form-input {
+  background-image: var(--navbar-bg);
+  color: var(--clr-font);
+}
+.form-input:focus{
+  color: var(--clr-font);
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
 
 import SwitchTheme from '../../components/SwitchButton/SwitchTheme';
@@ -10,15 +11,23 @@ const Header = () => {
     <header>
       <Navbar bg='light' expand='lg' className='custom-navbar'>
         <Container className='position-relative'>
-          <Navbar.Brand href='#home'>React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand as={Link} to='/'>
+            React-Bootstrap
+          </Navbar.Brand>
           <Navbar.Toggle>
             <FaBars />
           </Navbar.Toggle>
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto align-items-center'>
-              <Nav.Link href='#home'>SHOP</Nav.Link>
-              <Nav.Link href='#link'>CONTACT</Nav.Link>
-              <Nav.Link href='#link'>SIGN IN</Nav.Link>
+              <Nav.Link as={Link} to='/shop'>
+                SHOP
+              </Nav.Link>
+              <Nav.Link as={Link} to='/contact'>
+                CONTACT
+              </Nav.Link>
+              <Nav.Link as={Link} to='/signin'>
+                SIGN IN
+              </Nav.Link>
               <NavDropdown
                 title={<FaShoppingCart />}
                 className='pt-0'
@@ -30,9 +39,7 @@ const Header = () => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href='#theme-changer'>
-                <SwitchTheme className='ms-2' />
-              </Nav.Link>
+              <SwitchTheme className='ms-2' />
             </Nav>
           </Navbar.Collapse>
         </Container>
