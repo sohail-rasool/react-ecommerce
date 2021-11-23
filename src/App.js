@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from './layout/AppLayout';
+
+import firebase from './services/firebase/firebase.utils';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -9,6 +11,16 @@ import NotFound from './pages/404/index';
 import SiginIn from './pages/auth/SiginIn';
 import Signup from './pages/auth/SignUp';
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
+
+  console.log(user);
+
   return (
     <>
       <AppLayout>

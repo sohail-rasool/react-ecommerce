@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { signInWithGoogle } from '../../services/firebase/firebase.utils';
 import './AuthPageStyles.css';
 
 const SiginIn = () => {
@@ -31,7 +32,7 @@ const SiginIn = () => {
           <Button className='me-3' variant='dark' type='submit'>
             Sign in
           </Button>
-          <Button variant='primary' type='button'>
+          <Button variant='primary' type='button' onClick={signInWithGoogle}>
             Sign in with Google
           </Button>
         </Form>
