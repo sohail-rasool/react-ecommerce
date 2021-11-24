@@ -3,7 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import AppLayout from './layout/AppLayout';
 import { useDispatch } from 'react-redux';
 import googleAuthAction from './store/actions/googleAuthAction';
-import firebase from './services/firebase/firebase.utils';
+import firebase, {
+  createUserProfileDocument,
+} from './services/firebase/firebase.utils';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -14,8 +16,9 @@ import Signup from './pages/auth/SignUp';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const unSubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unSubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       dispatch(googleAuthAction(user));
+      createUserProfileDocument(user);
     });
     return () => unSubscribe();
   }, [dispatch]);
