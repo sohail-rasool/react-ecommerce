@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from './layout/AppLayout';
-
+import { useDispatch } from 'react-redux';
+import googleAuthAction from './store/actions/googleAuthAction';
 import firebase from './services/firebase/firebase.utils';
 
 // Pages
@@ -11,15 +12,13 @@ import NotFound from './pages/404/index';
 import SiginIn from './pages/auth/SiginIn';
 import Signup from './pages/auth/SignUp';
 function App() {
-  const [user, setUser] = useState(null);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      setUser(user);
+    const unSubscribe = firebase.auth().onAuthStateChanged((user) => {
+      dispatch(googleAuthAction(user));
     });
-  }, []);
-
-  console.log(user);
+    return () => unSubscribe();
+  }, [dispatch]);
 
   return (
     <>

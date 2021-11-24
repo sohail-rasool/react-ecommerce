@@ -2,11 +2,14 @@ import React from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { auth } from '../../services/firebase/firebase.utils';
 
 import SwitchTheme from '../../components/SwitchButton/SwitchTheme';
 import './Header.css';
 
 const Header = () => {
+  const user = useSelector((state) => state.googleUser);
   return (
     <header>
       <Navbar bg='light' expand='lg' className='custom-navbar'>
@@ -25,9 +28,15 @@ const Header = () => {
               <Nav.Link as={Link} to='/contact'>
                 CONTACT
               </Nav.Link>
-              <Nav.Link as={Link} to='/signin'>
-                SIGN IN
-              </Nav.Link>
+
+              {user ? (
+                <Nav.Link onClick={() => auth.signOut()}>SIGN Out</Nav.Link>
+              ) : (
+                <Nav.Link as={Link} to='/signin'>
+                  SIGN IN
+                </Nav.Link>
+              )}
+
               <NavDropdown
                 title={<FaShoppingCart />}
                 className='pt-0'

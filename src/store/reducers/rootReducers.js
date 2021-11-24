@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import counterReducer from '../reducers/counterReducer';
+import googleAuthReducer from '../reducers/googleAuthReducer';
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  googleUser: googleAuthReducer,
 });
 
 export default rootReducer;
