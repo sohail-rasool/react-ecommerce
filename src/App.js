@@ -19,10 +19,11 @@ function App() {
     const unSubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUserProfileDocument(user);
-
         userRef.onSnapshot((snapshot) => {
           dispatch(googleAuthAction({ id: snapshot.id, ...snapshot.data() }));
         });
+      } else {
+        dispatch(googleAuthAction(user));
       }
     });
     return () => unSubscribe();
