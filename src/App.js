@@ -17,8 +17,13 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const unSubscribe = firebase.auth().onAuthStateChanged(async (user) => {
-      dispatch(googleAuthAction(user));
-      createUserProfileDocument(user);
+      if (user) {
+        const userRef = await createUserProfileDocument(user);
+
+        userRef.onSnapshot((snapshot) => {
+          dispatch(googleAuthAction({ id: snapshot.id, ...snapshot.data() }));
+        });
+      }
     });
     return () => unSubscribe();
   }, [dispatch]);
