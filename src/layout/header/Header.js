@@ -9,7 +9,7 @@ import SwitchTheme from '../../components/SwitchButton/SwitchTheme';
 import './Header.css';
 
 const Header = () => {
-  const user = useSelector((state) => state.googleUser);
+  const user = useSelector((state) => state.googleUser.currentUser);
   return (
     <header>
       <Navbar bg='light' expand='lg' className='custom-navbar'>
