@@ -1,42 +1,50 @@
-import React,{useRef} from 'react';
+import React, { useRef, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './AuthPageStyles.css';
-import { auth, createUserProfileDocument } from '../../services/firebase/firebase.utils';
+import {
+  auth,
+  createUserProfileDocument,
+} from '../../services/firebase/firebase.utils';
+import Loader from '../../components/Loader/Loader';
 
 const Signup = () => {
+  let userName = useRef(null);
+  let emailAddress = useRef(null);
+  let passwordEntered = useRef(null);
+  let confirmPasswordEntered = useRef(null);
 
-  let userName = useRef(null)
-  let emailAddress = useRef(null)
-  let passwordEntered = useRef(null)
-  let confirmPasswordEntered = useRef(null)
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = async (e) => {
-    e.preventDefault()
-    let displayName = userName.current.value
-    let userEmail = emailAddress.current.value
-    let userPassword = passwordEntered.current.value
-    let userConfirmPassword = confirmPasswordEntered.current.value
+    e.preventDefault();
+    let displayName = userName.current.value;
+    let userEmail = emailAddress.current.value;
+    let userPassword = passwordEntered.current.value;
+    let userConfirmPassword = confirmPasswordEntered.current.value;
 
-    if(userPassword !== userConfirmPassword) {
-      alert('password should be equal')
-      return
+    if (userPassword !== userConfirmPassword) {
+      alert('password should be equal');
+      return;
     }
     try {
-     await auth.createUserWithEmailAndPassword(userEmail, userPassword).then((userCredential) => {
-      const user = userCredential.user;
-      createUserProfileDocument(user,{displayName})
-    })
-     
-     
-    userName.current.value = ''
-     emailAddress.current.value = ''
-     passwordEntered.current.value = ''
-     confirmPasswordEntered.current.value = ''
+      setLoading(true);
+      await auth
+        .createUserWithEmailAndPassword(userEmail, userPassword)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          createUserProfileDocument(user, { displayName });
+        });
+      setLoading(false);
+
+      userName.current.value = '';
+      emailAddress.current.value = '';
+      passwordEntered.current.value = '';
+      confirmPasswordEntered.current.value = '';
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
   return (
     <Row>
       <Col md={6}>
@@ -81,8 +89,8 @@ const Signup = () => {
               ref={confirmPasswordEntered}
             />
           </Form.Group>
-          <Button variant='dark' type='submit'>
-            Sign up
+          <Button variant='dark' type='submit' disabled={loading}>
+            {loading ? <Loader /> : 'Sign up'}
           </Button>
         </Form>
         <p className='mt-3'>
