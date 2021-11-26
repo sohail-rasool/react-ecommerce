@@ -7,13 +7,6 @@
 .navbar-toggler {
   color: var(--clr-font) !important;
 }
-.custom-navbar .dropdown-toggle::after{
-  border: 0;
-}
-.custom-navbar .dropdown-toggle {
-  font-size: 2em;
-}
-.custom-navbar .dropdown-menu {
-  right: 0;
-  left: auto !important;
+.cart-icon {
+  font-size: 1.3rem;
 }

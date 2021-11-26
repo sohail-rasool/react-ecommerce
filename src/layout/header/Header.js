@@ -1,15 +1,26 @@
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { auth } from '../../services/firebase/firebase.utils';
 
 import SwitchTheme from '../../components/SwitchButton/SwitchTheme';
+import CartDropDown from '../../components/CartDropDown/CartDropDown';
+import { toggleDropDownAction } from '../../store/actions/cartDropDownAction';
 import './Header.css';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.googleUser.currentUser);
+  const showDropDown = useSelector(
+    (state) => state.showCartDropDown.cartDropDown
+  );
+
+  const toggleDropDown = () => {
+    dispatch(toggleDropDownAction());
+  };
+
   return (
     <header>
       <Navbar bg='light' expand='lg' className='custom-navbar'>
@@ -37,17 +48,14 @@ const Header = () => {
                 </Nav.Link>
               )}
 
-              <NavDropdown
-                title={<FaShoppingCart />}
-                className='pt-0'
-                id='basic-nav-dropdown'
+              <Nav.Link
+                className='cart-icon position-relative'
+                onClick={toggleDropDown}
               >
-                <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href='#action/3.4'>
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
+                <FaShoppingCart />
+                (0)
+                {showDropDown && <CartDropDown />}
+              </Nav.Link>
               <SwitchTheme className='ms-2' />
             </Nav>
           </Navbar.Collapse>

@@ -1,0 +1,22 @@
+.cartDropdown {
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--clr-font);
+  background-color: var(--clr-bg);
+  top: 55px;
+  right: 3px;
+  z-index: 5;
+}
+.cartItems {
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.checkOutButton {
+  margin-top: auto;
+}
