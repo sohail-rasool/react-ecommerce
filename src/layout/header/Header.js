@@ -13,9 +13,7 @@ import './Header.css';
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.googleUser.currentUser);
-  const showDropDown = useSelector(
-    (state) => state.showCartDropDown.cartDropDown
-  );
+  const showDropDown = useSelector((state) => state.cart.cartDropDown);
 
   const toggleDropDown = () => {
     dispatch(toggleDropDownAction());

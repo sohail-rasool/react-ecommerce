@@ -1,7 +1,14 @@
 import React from 'react';
 import { Col, Card, Badge, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../store/actions/cartDropDownAction';
 
-const CollectionItem = ({ name, price, imageUrl }) => {
+const CollectionItem = ({ item }) => {
+  const { name, price, imageUrl } = item;
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    dispatch(addItem(item));
+  };
   return (
     <Col lg={3} className='mb-3'>
       <Card className='custom-card'>
@@ -13,7 +20,9 @@ const CollectionItem = ({ name, price, imageUrl }) => {
             <Card.Title>{name}</Card.Title>
             <Badge bg='info'>{price}</Badge>
           </div>
-          <Button variant='primary'>Add To Cart</Button>
+          <Button variant='primary' onClick={addToCart}>
+            Add To Cart
+          </Button>
         </Card.Body>
       </Card>
     </Col>

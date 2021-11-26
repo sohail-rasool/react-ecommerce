@@ -1,7 +1,14 @@
-import { TOGGLE_DROP_DOWN } from '../constants/CartDropDownConstants';
+import { cartActionType } from '../constants/CartDropDownConstants';
 
 export const toggleDropDownAction = () => {
   return {
-    type: TOGGLE_DROP_DOWN,
+    type: cartActionType.TOGGLE_DROP_DOWN,
+  };
+};
+
+export const addItem = (item) => {
+  return {
+    type: cartActionType.ADD_ITEM,
+    payload: item,
   };
 };
