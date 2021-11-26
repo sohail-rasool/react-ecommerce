@@ -12,7 +12,7 @@
   z-index: 5;
 }
 .cartItems {
-  height: 240px;
+  max-height: 240px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
