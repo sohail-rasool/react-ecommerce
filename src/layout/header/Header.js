@@ -3,20 +3,27 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaBars, FaShoppingCart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+
 import { auth } from "../../services/firebase/firebase.utils";
-import {selectCartItemCount} from '../../store/selectors/cartSelector'
+import { toggleDropDownAction } from "../../store/actions/cartDropDownAction";
+import {
+  selectCartItemCount,
+  selectCartDropDown,
+} from "../../store/selectors/cartSelector";
+import { selectCurrentUser } from "../../store/selectors/userSelector";
 
 import SwitchTheme from "../../components/SwitchButton/SwitchTheme";
 import CartDropDown from "../../components/CartDropDown/CartDropDown";
-import { toggleDropDownAction } from "../../store/actions/cartDropDownAction";
+
 import "./Header.css";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.googleUser.currentUser);
-  const showDropDown = useSelector((state) => state.cart.cartDropDown);
   const state = useSelector((state) => state);
-  let itemCount = selectCartItemCount(state)
+  const user = selectCurrentUser(state);
+
+  const showDropDown = selectCartDropDown(state);
+  let itemCount = selectCartItemCount(state);
 
   const toggleDropDown = () => {
     dispatch(toggleDropDownAction());

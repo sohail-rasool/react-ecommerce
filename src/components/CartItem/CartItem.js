@@ -14,7 +14,7 @@ const CartItem = ({ item: { name, imageUrl, price, quantity } }) => {
       <div className={Classes.itemDetails}>
         <span className={Classes.nameItem}>{name}</span>
         <span>
-          {quantity} * {`$ ${price}`}
+          {quantity} × {`$ ${price}`}
         </span>
       </div>
     </div>

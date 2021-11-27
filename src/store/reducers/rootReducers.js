@@ -4,7 +4,7 @@ import googleAuthReducer from '../reducers/googleAuthReducer';
 import counterReducer from '../reducers/cartDropDownReducer';
 
 const rootReducer = combineReducers({
-  googleUser: googleAuthReducer,
+  user: googleAuthReducer,
   cart: counterReducer,
 });
 

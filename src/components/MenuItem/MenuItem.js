@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 const MenuItem = ({ title, imageUrl, linkUrl }) => {
   const navigate = useNavigate();
-  const gotToUrl = () => {
+  const goToUrl = () => {
     navigate(`${linkUrl}`);
   };
   return (
     <Card className='custom-card mb-3'>
-      <div className='img-wrapper' onClick={gotToUrl}>
+      <div className='img-wrapper' onClick={goToUrl}>
         <Card.Img variant='top' src={imageUrl} />
       </div>
       <Card.Body>

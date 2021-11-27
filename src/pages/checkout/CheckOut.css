@@ -1,0 +1,4 @@
+.custom-table,
+.custom-table td{
+    color: var(--clr-font) !important;
+}

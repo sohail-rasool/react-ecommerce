@@ -9,14 +9,18 @@ import firebase, {
 
 import AppLayout from './layout/AppLayout';
 
+import { selectCurrentUser } from "./store/selectors/userSelector";
+
 // Pages
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/shop/ShopPage';
 import NotFound from './pages/404/index';
 import SiginIn from './pages/auth/SiginIn';
 import Signup from './pages/auth/SignUp';
+import CheckOut from './pages/checkout/CheckOut'
 function App() {
-  const user = useSelector((state) => state.googleUser.currentUser);
+  const state = useSelector((state) => state)
+  const user = selectCurrentUser(state);
   const dispatch = useDispatch();
   useEffect(() => {
     const unSubscribe = firebase.auth().onAuthStateChanged(async (user) => {
@@ -41,7 +45,10 @@ function App() {
             path='/'
             element={user ? <HomePage /> : <Navigate replace to='/signin' />}
           />
+
           <Route path='/shop' element={<ShopPage />} />
+          <Route path='/checkout' element={<CheckOut />} />
+
           <Route
             path='/signin'
             element={user ? <Navigate replace to='/' /> : <SiginIn />}
@@ -50,6 +57,7 @@ function App() {
             path='/signup'
             element={user ? <Navigate replace to='/' /> : <Signup />}
           />
+
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AppLayout>

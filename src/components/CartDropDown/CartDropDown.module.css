@@ -12,11 +12,17 @@
   z-index: 5;
 }
 .cartItems {
-  max-height: 240px;
+  height: 240px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
 }
 .checkOutButton {
   margin-top: auto;
+}
+
+@media only screen and (max-width:992px) {
+  .cartDropdown {
+    right:-92px
+  }
 }
