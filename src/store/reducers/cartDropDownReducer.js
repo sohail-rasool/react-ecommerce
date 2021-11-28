@@ -1,5 +1,5 @@
-import { cartActionType } from '../constants/CartDropDownConstants';
-import addCartItems from '../utils/addCartItems';
+import { cartActionType } from "../constants/CartDropDownConstants";
+import { addCartItems, removeCartItem } from "../utils/cart";
 
 const INITIAL_STATE = {
   cartDropDown: false,
@@ -17,6 +17,18 @@ const counterReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: addCartItems(state.cartItems, action.payload),
+      };
+    case cartActionType.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeCartItem(state.cartItems, action.payload),
+      };
+    case cartActionType.REMOVE_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload
+        ),
       };
     default:
       return state;

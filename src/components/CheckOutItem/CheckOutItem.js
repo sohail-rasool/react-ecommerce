@@ -1,7 +1,25 @@
 import React from "react";
 import { Image } from "react-bootstrap";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-const CheckOutItem = ({ imageUrl, name, price, quantity }) => {
+import { useDispatch } from "react-redux";
+import {
+  removeItemFromCart,
+  addItem,
+  removeItem,
+} from "../../store/actions/cartDropDownAction";
+
+const CheckOutItem = ({ imageUrl, name, price, quantity, id, item }) => {
+  const dispatch = useDispatch();
+  const addToCartItem = () => {
+    dispatch(addItem(item));
+  };
+  const removecartItem = () => {
+    dispatch(removeItem(item));
+  }
+  const removeFromCartItem = () => {
+    dispatch(removeItemFromCart(id));
+  };
+
   return (
     <tr style={{ verticalAlign: "middle" }} className="text-center">
       <td>
@@ -14,17 +32,25 @@ const CheckOutItem = ({ imageUrl, name, price, quantity }) => {
       <td>{name}</td>
       <td>
         <div>
-          <span className="btn">
-            <FaChevronLeft />
+          <span className="btn" style={{ color: "white" }}>
+            <FaChevronLeft onClick={removecartItem} />
           </span>
           <span className="mx-3">{quantity}</span>
-          <span className="btn">
-            <FaChevronRight />
+          <span className="btn" style={{ color: "white" }}>
+            <FaChevronRight onClick={addToCartItem} />
           </span>
         </div>
       </td>
       <td>${price}</td>
-      <td><span className="btn">✕</span></td>
+      <td>
+        <span
+          className="btn"
+          style={{ color: "white" }}
+          onClick={removeFromCartItem}
+        >
+          ✕
+        </span>
+      </td>
     </tr>
   );
 };

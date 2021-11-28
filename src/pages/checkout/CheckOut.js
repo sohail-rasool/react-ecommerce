@@ -22,7 +22,7 @@ const CheckOut = () => {
       </thead>
       <tbody>
         {
-          cartItems.map((cartItem) => <CheckOutItem key={cartItem.id} {...cartItem} />)
+          cartItems.map((cartItem) => <CheckOutItem key={cartItem.id} item={cartItem} {...cartItem} />)
         }
       </tbody>
     </Table>
