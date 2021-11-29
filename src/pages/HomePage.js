@@ -1,11 +1,15 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
+import { useSelector } from 'react-redux';
+
 import MenuItem from '../components/MenuItem/MenuItem';
 
-import menuItemsData from '../data/menu-items-data';
+import { selectMenuItemsSections } from '../store/selectors/menuItemsSelector';
 
-const HomePage = (props) => {
+const HomePage = () => {
+  const state = useSelector((state) => state);
+  const menuItemsData = selectMenuItemsSections(state);
   return (
     <Row>
       {menuItemsData.map((item) => (
