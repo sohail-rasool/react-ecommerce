@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   user: googleAuthReducer,
   cart: cartReducer,
   menuItems: menuItemReducer,
-  shopData: shopDataReducer,
+  shop: shopDataReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
