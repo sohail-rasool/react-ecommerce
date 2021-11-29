@@ -1,5 +1,5 @@
-import { cartActionType } from "../constants/CartDropDownConstants";
-import { addCartItems, removeCartItem } from "../utils/cart";
+import { cartActionType } from '../constants/CartDropDownConstants';
+import { addCartItems, removeCartItem } from '../utils/cart';
 
 const INITIAL_STATE = {
   cartDropDown: false,
