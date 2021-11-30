@@ -1,21 +1,26 @@
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { Row } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectShopDataCollection } from '../../store/selectors/shopDataSelectors';
 
+import CollectionItem from '../../components/CollectionItem/CollectionItem';
+
 const Collection = () => {
   const state = useSelector((state) => state);
-
-  const location = useLocation();
-  console.log(location);
-
   const { collectionId } = useParams();
-  console.log(collectionId);
-
   const shopDataCollectionItem = selectShopDataCollection(collectionId)(state);
-  console.log(shopDataCollectionItem);
-
-  return <div>category</div>;
+  const { title, items } = shopDataCollectionItem;
+  return (
+    <>
+      <h1 className='mb-5 text-center'>{title}</h1>
+      <Row>
+        {items.map((item) => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
+      </Row>
+    </>
+  );
 };
 
 export default Collection;
