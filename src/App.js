@@ -9,7 +9,7 @@ import firebase, {
 
 import AppLayout from './layout/AppLayout';
 
-import { selectCurrentUser } from "./store/selectors/userSelector";
+import { selectCurrentUser } from './store/selectors/userSelector';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -17,9 +17,10 @@ import ShopPage from './pages/shop/ShopPage';
 import NotFound from './pages/404/index';
 import SiginIn from './pages/auth/SiginIn';
 import Signup from './pages/auth/SignUp';
-import CheckOut from './pages/checkout/CheckOut'
+import CheckOut from './pages/checkout/CheckOut';
+
 function App() {
-  const state = useSelector((state) => state)
+  const state = useSelector((state) => state);
   const user = selectCurrentUser(state);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,24 +41,28 @@ function App() {
     <>
       <AppLayout>
         <Routes>
+          {/* Home Page */}
           <Route
             exact
             path='/'
             element={user ? <HomePage /> : <Navigate replace to='/signin' />}
           />
+          {/* Shop Page */}
+          <Route path='shop/*' element={<ShopPage />} />
 
-          <Route path='/shop' element={<ShopPage />} />
+          {/* CheckOut page */}
           <Route path='/checkout' element={<CheckOut />} />
-
+          {/* signin */}
           <Route
             path='/signin'
             element={user ? <Navigate replace to='/' /> : <SiginIn />}
           />
+          {/* signup */}
           <Route
             path='/signup'
             element={user ? <Navigate replace to='/' /> : <Signup />}
           />
-
+          {/* NotFound page */}
           <Route path='*' element={<NotFound />} />
         </Routes>
       </AppLayout>
