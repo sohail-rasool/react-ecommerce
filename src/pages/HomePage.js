@@ -12,6 +12,9 @@ const HomePage = () => {
   const menuItemsData = selectMenuItemsSections(state);
   return (
     <Row>
+    <Col xs={12} className='mb-4 mt-2'>
+     <h1 className='text-center'>All Categories</h1> 
+    </Col>
       {menuItemsData.map((item) => (
         <Col lg={4} key={item.id}>
           <MenuItem

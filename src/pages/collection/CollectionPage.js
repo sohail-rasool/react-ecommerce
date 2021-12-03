@@ -13,6 +13,7 @@ const Collection = () => {
   const { title, items } = shopDataCollectionItem;
   return (
     <>
+      <h1 className='mb-5'>Details</h1>
       <h1 className='mb-5 text-center'>{title}</h1>
       <Row>
         {items.map((item) => (

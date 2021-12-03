@@ -15,7 +15,7 @@ const MenuItem = ({ title, imageUrl, linkUrl }) => {
       </div>
       <Card.Body>
         <Card.Title className='mb-5'>{title}</Card.Title>
-        <Button variant='primary'>Shop Now</Button>
+        <Button variant='primary' onClick={goToUrl}>Shop Now</Button>
       </Card.Body>
     </Card>
   );
