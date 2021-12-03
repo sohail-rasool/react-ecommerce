@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -9,24 +9,35 @@ import {
   convertCollectionSnapshotToMap,
 } from '../../services/firebase/firebase.utils';
 
-import Collection from '../collection/CollectionPage';
+import CollectionPage from '../collection/CollectionPage';
 
 import CollectionOverview from '../../components/CollectionOverview/CollectionOverView';
+import Loader from '../../components/Loader/Loader';
+
 const ShopPage = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const collectionRef = firestore.collection('collections');
     collectionRef.onSnapshot(async (snapshot) => {
       const collectionMap = convertCollectionSnapshotToMap(snapshot);
       dispatch(updateCollections(collectionMap));
-      console.log(collectionMap);
+      setLoading(false);
     });
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Routes>
-        <Route exact path='/' element={<CollectionOverview />} />
-        <Route exact path=':collectionId' element={<Collection />} />
+        <Route
+          exact
+          path='/'
+          element={loading ? <Loader /> : <CollectionOverview />}
+        />
+        <Route
+          exact
+          path=':collectionId'
+          element={loading ? <Loader /> : <CollectionPage />}
+        />
       </Routes>
     </>
   );

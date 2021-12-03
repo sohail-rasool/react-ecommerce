@@ -6,7 +6,7 @@ import { selectShopDataCollection } from '../../store/selectors/shopDataSelector
 
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
 
-const Collection = () => {
+const CollectionPage = () => {
   const state = useSelector((state) => state);
   const { collectionId } = useParams();
   const shopDataCollectionItem = selectShopDataCollection(collectionId)(state);
@@ -24,4 +24,4 @@ const Collection = () => {
   );
 };
 
-export default Collection;
+export default CollectionPage;
